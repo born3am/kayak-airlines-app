@@ -1,0 +1,2 @@
+ - NPX create-react-app
+ - import font: https://www.onlinewebfonts.com/download/af5307d3d2a9f57f07d45e166c19c485
