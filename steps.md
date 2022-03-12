@@ -1,2 +1,4 @@
- - NPX create-react-app
- - import font: https://www.onlinewebfonts.com/download/af5307d3d2a9f57f07d45e166c19c485
+- NPX create-react-app
+- import font: https://www.onlinewebfonts.com/download/32439590f99f4c85f653dddb5c1e2118
+- npm i node-sass
+- npm i use-jsonp

@@ -1,34 +1,126 @@
-import logo from './assets/img/Logo.svg';
-import './App.css';
+// Native Imports
+import React, { useEffect, useState } from 'react';
 
-function App() {
+
+// External Imports
+import useJSONP from "use-jsonp";
+
+
+// Internal Imports
+import logo from './assets/img/Logo.svg';
+import './style/App.scss';
+import Airline from './components/Airline';
+
+export default function App() {
+
+  const [airlineCompanies, setAirlineCompanies] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  const [filters, setFilters, filtersRef] = useState([]);
+
+  useEffect(() => {
+    requestAirlines();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
+  const requestAirlines = useJSONP({
+    url:
+      "https://www.kayak.com/h/mobileapis/directory/airlines/homework?callback=jsonp",
+    callback: (data) => setAirlineCompanies(data),
+    callbackParam: "jsonp"
+  });
+
+  console.log('=============AIRLINES=======================');
+  console.log('airlineCompanies', airlineCompanies);
+  console.log('====================================');
+
+  const handleCheckbox = (filter) => {
+    if (!filters.includes(filter)) {
+      setFilters([...filters, filter]);
+    } else {
+      setFilters(filters.filter(item => item !== filter));
+    }
+  };
+
+
   return (
-    <div className="App-container">
+    <>
       <header className="App-header">
         <img src={logo} className="kayak-logo" alt="logo" />
-        <h1>Airlines</h1>
       </header>
 
-      <h4>Filter by Alliances</h4>
-      <div className='App-radio-container' >
-        <div>
-          <input type="radio" />
-          <label htmlFor="">OneWorld</label>
-        </div>
-        <div>
-          <input type="radio" />
-          <label htmlFor="">Sky Team</label>
-        </div>
-        <div>
-          <input type="radio" />
-          <label htmlFor="">Star Alliance</label>
-        </div>
+      <div className='Airlines-container'>
+        <h1>Airlines</h1>
 
+        <h2>Filter by Alliances</h2>
+        <ul className='Airlines-checkboxes-row' >
+          <li>
+            <input
+              type="checkbox"
+              value="OW"
+              name="oneWorld"
+              id="oneWorld"
+              onChange={() => handleCheckbox("OW")}
+              checked={filters.includes("OW")}
+            />
+            <label
+              htmlFor="oneWorld"
+            >
+              OneWorld
+            </label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              value="ST"
+              name="skyTeam"
+              id="skyTeam"
+              onChange={() => handleCheckbox("ST")}
+              checked={filters.includes("ST")}
+            />
+            <label
+              htmlFor="skyTeam"
+            >
+              Sky Team
+            </label>
+          </li>
+          <li>
+            <input
+              type="checkbox"
+              value="SA"
+              name="starAlliance"
+              id="starAlliance"
+              onChange={() => handleCheckbox("SA")}
+              checked={filters.includes("SA")}
+            />
+            <label
+              htmlFor="starAlliance"
+            >
+              Star Alliance
+            </label>
+          </li>
+
+        </ul>
+
+        <div className='Airlines-grid'>
+          {airlineCompanies
+            .filter((airline) => {
+              return filters.length > 0 ?
+                filters.includes(airline.alliance) :
+                airline;
+            })
+
+            .map((airline, idx) => <Airline key={idx} airline={airline} />)
+            .slice(0, 40)
+
+          }
+
+        </div>
       </div>
 
 
-    </div>
+    </>
   );
 }
 
-export default App;
