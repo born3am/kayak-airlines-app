@@ -11,7 +11,7 @@ import Airline from './components/Airline';
 export default function App() {
 
   const [airlineCompanies, setAirlineCompanies] = useState([]);
-  const [filters, setFilters, filtersRef] = useState([]);
+  const [filters, setFilters] = useState([]);
 
   useEffect(() => {
     const fetchAirlines = () => {
