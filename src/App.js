@@ -1,10 +1,8 @@
 // Native Imports
 import React, { useEffect, useState } from 'react';
 
-
 // External Imports
-import useJSONP from "use-jsonp";
-
+import fetchJsonp from "fetch-jsonp";
 
 // Internal Imports
 import logo from './assets/img/Logo.svg';
@@ -13,20 +11,23 @@ import Airline from './components/Airline';
 export default function App() {
 
   const [airlineCompanies, setAirlineCompanies] = useState([]);
-  // const [loading, setLoading] = useState(true);
   const [filters, setFilters, filtersRef] = useState([]);
 
-  const requestAirlines = useJSONP({
-    url:
-      "https://www.kayak.com/h/mobileapis/directory/airlines/homework?callback=jsonp",
-    callback: (data) => setAirlineCompanies(data),
-    callbackParam: "jsonp"
-  });
-
   useEffect(() => {
-    requestAirlines();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const fetchAirlines = () => {
+      fetchJsonp('https://www.kayak.com/h/mobileapis/directory/airlines/homework?callback=jsonp', {
+        jsonpCallback: 'jsonp',
+      })
+        .then(function (response) {
+          return response.json()
+        }).then(function (data) {
+          // console.log('parsed json', data)
+          setAirlineCompanies(data)
+        }).catch(function (ex) {
+          console.log('parsing failed', ex)
+        })
+    }
+    fetchAirlines()
   }, []);
 
   // console.log('=============AIRLINES=======================');
@@ -41,16 +42,13 @@ export default function App() {
     }
   };
 
-
   return (
     <>
       <header className="App-header">
         <img src={logo} className="kayak-logo" alt="logo" />
       </header>
-
       <div className='Airlines-container'>
         <h1>Airlines</h1>
-
         <h2>Filter by Alliances</h2>
         <ul className='Airlines-checkboxes-row' >
           <li>
@@ -98,10 +96,7 @@ export default function App() {
               Star Alliance
             </label>
           </li>
-
         </ul>
-
-
         <div className='Airlines-grid'>
           {airlineCompanies
             .filter((airline) => {
@@ -109,16 +104,11 @@ export default function App() {
                 filters.includes(airline.alliance) :
                 airline;
             })
-
             .map((airline, idx) => <Airline key={idx} airline={airline} />)
             // .slice(0, 10)
-
           }
-
         </div>
       </div>
-
-
     </>
   );
 }
