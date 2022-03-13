@@ -51,6 +51,8 @@ export default function Airline(props) {
         return result;
     };
 
+    let websiteAddress = StandardizeAirlineSite(site);
+
 
     return (
         <>
@@ -59,7 +61,7 @@ export default function Airline(props) {
                     className={hoverMe ? "hovered-airline-card" : "Airline-card"}
                     onMouseEnter={toggleHover}
                     onMouseLeave={toggleHover}
-                // onClick={() => window.open(site, "_blank")}
+                    onClick={() => window.open(`https://www.${websiteAddress}`, "")}
                 >
                     <div>
                         <img src={logo} className={hoverMe ? "hovered-airline-logo" : "Airline-logo"} alt="logo" />
@@ -73,7 +75,7 @@ export default function Airline(props) {
                         </div>
                         <div className={hoverMe ? "hovered-airline-phone" : "hidden"}>{phone}</div>
                         <div className={hoverMe ? "hovered-airline-url" : "hidden"}>
-                            {StandardizeAirlineSite(site)}
+                            {websiteAddress}
                         </div>
 
 

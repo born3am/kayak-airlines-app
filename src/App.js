@@ -112,7 +112,7 @@ export default function App() {
             })
 
             .map((airline, idx) => <Airline key={idx} airline={airline} />)
-            .slice(0, 40)
+            // .slice(0, 10)
 
           }
 

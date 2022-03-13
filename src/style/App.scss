@@ -21,6 +21,7 @@
   }
 
   h1 {
+    margin-top: 0px;
     margin-bottom: 73px;
     font-size: 44px;
     font-weight: 900;
@@ -28,6 +29,7 @@
   }
 
   h2 {
+    margin-top: 0px;
     margin-bottom: 23px;
     font-size: 16px;
     font-weight: bold;
@@ -39,13 +41,24 @@
     flex-direction: row;
     align-items: right;
     margin-bottom: 56px;
+    margin-top: 0px;
     margin-left: -45px;
 
     @include mobile {
       flex-direction: column;
     }
 
+    ul {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
     li {
+      margin: 0;
+      padding: 0;
+      border: 0;
+
       list-style: none;
       align-items: right;
     }
@@ -81,9 +94,18 @@
 }
 
 .Airlines-grid {
-  padding: 0 -8px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  grid-template-rows: 240px 240px 240px 240px;
+  grid-gap: 16px;
+
+  @include tablet {
+    grid-template-columns: 300px 300px;
+    grid-template-rows: 240px 240px;
+  }
+
+  @include mobile {
+    grid-template-columns: 300px;
+    grid-template-rows: 240px;
+  }
 }
