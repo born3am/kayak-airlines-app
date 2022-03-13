@@ -44,5 +44,13 @@
   "keywords": [
     "kayak",
     "airline"
-  ]
+  ],
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/born3am/kayak-airlines-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/born3am/kayak-airlines-app/issues"
+  }
 }

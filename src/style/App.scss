@@ -1,4 +1,5 @@
 @import "./colors";
+@import "./breakpoints";
 
 .App-header img {
   margin: 19px 16px 19px 16px;
@@ -8,6 +9,16 @@
 .Airlines-container {
   padding: 67px 94px 67px 94px;
   background-color: $color-background;
+
+  @include tablet {
+    padding-left: #{"min(67px, ((100vw - 300px) / 2))"};
+    padding-right: #{"min(67px, ((100vw - 300px) / 2))"};
+  }
+
+  @include mobile {
+    padding-left: #{"min(67px, ((100vw - 300px) / 2))"};
+    padding-right: #{"min(67px, ((100vw - 300px) / 2))"};
+  }
 
   h1 {
     margin-bottom: 73px;
@@ -29,6 +40,10 @@
     align-items: right;
     margin-bottom: 56px;
     margin-left: -45px;
+
+    @include mobile {
+      flex-direction: column;
+    }
 
     li {
       list-style: none;
@@ -66,6 +81,7 @@
 }
 
 .Airlines-grid {
+  padding: 0 -8px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

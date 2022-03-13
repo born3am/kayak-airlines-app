@@ -8,7 +8,6 @@ import useJSONP from "use-jsonp";
 
 // Internal Imports
 import logo from './assets/img/Logo.svg';
-import './style/App.scss';
 import Airline from './components/Airline';
 
 export default function App() {
@@ -102,6 +101,7 @@ export default function App() {
           </li>
 
         </ul>
+
 
         <div className='Airlines-grid'>
           {airlineCompanies
