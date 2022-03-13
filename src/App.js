@@ -16,13 +16,6 @@ export default function App() {
   // const [loading, setLoading] = useState(true);
   const [filters, setFilters, filtersRef] = useState([]);
 
-  useEffect(() => {
-    requestAirlines();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-
   const requestAirlines = useJSONP({
     url:
       "https://www.kayak.com/h/mobileapis/directory/airlines/homework?callback=jsonp",
@@ -30,9 +23,15 @@ export default function App() {
     callbackParam: "jsonp"
   });
 
-  console.log('=============AIRLINES=======================');
-  console.log('airlineCompanies', airlineCompanies);
-  console.log('====================================');
+  useEffect(() => {
+    requestAirlines();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // console.log('=============AIRLINES=======================');
+  // console.log('airlineCompanies', airlineCompanies);
+  // console.log('====================================');
 
   const handleCheckbox = (filter) => {
     if (!filters.includes(filter)) {

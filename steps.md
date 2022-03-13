@@ -1,4 +1,0 @@
-- NPX create-react-app
-- import font: https://www.onlinewebfonts.com/download/32439590f99f4c85f653dddb5c1e2118
-- npm i node-sass
-- npm i use-jsonp

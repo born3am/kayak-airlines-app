@@ -12,10 +12,6 @@ export default function Airline(props) {
         SA: "Star Alliance"
     };
 
-
-    console.log("airline name", name);
-
-
     const AirlineNamePlusAcronym = (name) => {
         let result
         let splitWords = name.split(" ");
@@ -27,8 +23,6 @@ export default function Airline(props) {
         }
         return result;
     }
-
-
 
     const StandardizeAirlineSite = (site) => {
         const protocols = ["https:", "http"];
@@ -53,7 +47,6 @@ export default function Airline(props) {
 
     let websiteAddress = StandardizeAirlineSite(site);
 
-
     return (
         <>
             {
@@ -64,26 +57,45 @@ export default function Airline(props) {
                     onClick={() => window.open(`https://www.${websiteAddress}`, "")}
                 >
                     <div>
-                        <img src={logo} className={hoverMe ? "hovered-airline-logo" : "Airline-logo"} alt="logo" />
+                        <img
+                            src={logo}
+                            className={hoverMe ?
+                                "hovered-airline-logo" :
+                                "Airline-logo"}
+                            alt="logo" />
                     </div>
                     <div className="Airline-details">
-                        <div className={hoverMe ? "hovered-airline-name" : "Airline-name"}>
+                        <div
+                            className={hoverMe ?
+                                "hovered-airline-name" :
+                                "Airline-name"}
+                        >
                             {AirlineNamePlusAcronym(name)}
                         </div>
-                        <div className={hoverMe ? "hovered-airline-alliance" : "hidden"}>
+                        <div
+                            className={hoverMe ?
+                                "hovered-airline-alliance" :
+                                "hidden"}
+                        >
                             {alliances[alliance]}
                         </div>
-                        <div className={hoverMe ? "hovered-airline-phone" : "hidden"}>{phone}</div>
-                        <div className={hoverMe ? "hovered-airline-url" : "hidden"}>
+                        <div
+                            className={hoverMe ?
+                                "hovered-airline-phone" :
+                                "hidden"}
+                        >
+                            {phone}
+                        </div>
+                        <div
+                            className={hoverMe ?
+                                "hovered-airline-url" :
+                                "hidden"}
+                        >
                             {websiteAddress}
                         </div>
-
-
                     </div>
                 </div>
-
             }
-
         </>
     )
 }
